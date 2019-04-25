@@ -1,0 +1,18 @@
+@import "~src/assets/styles/vars";
+
+.invalid-feedback {
+  color: $importance-or-attention-color;
+  position: absolute;
+  font-size: 12px;
+  bottom: 0;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+mat-form-field {
+  min-width: 300px;
+}
+

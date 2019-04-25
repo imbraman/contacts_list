@@ -1,0 +1,47 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+
+    <mat-form-field>
+      <input matInput type="text" formControlName="username" class="form-control" placeholder="Enter your username"/>
+    </mat-form-field>
+    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+      <div *ngIf="f.username.errors.required">First Name is required</div>
+    </div>
+  </div>
+  <div class="form-group">
+
+    <mat-form-field>
+      <input matInput type="text" formControlName="email" class="form-control" placeholder="Enter your email"
+             [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
+    </mat-form-field>
+    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+      <div *ngIf="f.email.errors.required">Email is required</div>
+      <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+    </div>
+  </div>
+  <div class="form-group">
+
+    <mat-form-field>
+      <input matInput type="number" formControlName="phoneNumber" class="form-control" placeholder="Enter phone number"
+             [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }"/>
+    </mat-form-field>
+    <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
+      <div *ngIf="f.phoneNumber.errors.required">Phone number is required</div>
+    </div>
+  </div>
+  <div class="form-group">
+
+    <mat-form-field>
+      <input matInput [matDatepicker]="myDatepicker" formControlName="birthday" placeholder="Enter your birthday date"
+             [ngClass]="{ 'is-invalid': submitted && f.birthday.errors }">
+      <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+      <mat-datepicker #myDatepicker></mat-datepicker>
+    </mat-form-field>
+    <div *ngIf="submitted && f.birthday.errors" class="invalid-feedback">
+      <div *ngIf="f.birthday.errors.required">Birthday date is required</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <button mat-flat-button color="primary">Add</button>
+  </div>
+</form>
