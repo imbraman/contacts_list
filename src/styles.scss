@@ -32,3 +32,54 @@ body {
   background: $background-color;
   font-family: Roboto, "Helvetica Neue", sans-serif;;
 }
+
+
+tr.mat-header-row {
+  @include phone {
+    display: none;
+  }
+}
+
+tr.mat-row, tr.mat-footer-row {
+  @include phone {
+    height: 100% !important;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    position: relative;
+    margin-top: 4px;
+    border-radius: 4px;
+    background: white;
+  }
+}
+
+.mat-table {
+  @include phone {
+    background: rgba(0, 0, 0, 0);
+  }
+}
+
+td.mat-cell {
+  @include phone {
+    border: none !important;
+    width: 100% !important;
+    padding: 16px 12px !important;
+    & {
+      .value {
+        font-weight: 500;
+        display: inline-block;
+        width: 50%;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  .mobile-label {
+    display: none;
+    width: 50%;
+    @include phone {
+      display: inline-block;
+    }
+  }
+}

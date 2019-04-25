@@ -14,5 +14,8 @@
 
 mat-form-field {
   min-width: 300px;
+  @include phone {
+    width: 100%;
+  }
 }
 

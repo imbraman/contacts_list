@@ -1,3 +1,10 @@
 $importance-or-attention-color: #EC7474;
 $header-height: 60px;
 $background-color: aliceblue;
+$size-sm: 768px;
+
+@mixin phone {
+  @media (max-width: $size-sm - 1px) {
+    @content;
+  }
+}

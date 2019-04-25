@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ContactsService} from '../services/contacts.service';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {debounceTime, switchMap} from 'rxjs/operators';
 import {Subscription} from 'rxjs';
 import {MatTableDataSource, PageEvent} from '@angular/material';
@@ -8,11 +8,11 @@ import {MatTableDataSource, PageEvent} from '@angular/material';
 @Component({
   selector: 'app-contacts-table',
   templateUrl: './contacts-table.component.html',
-  styleUrls: ['./contacts-table.component.css']
+  styleUrls: ['./contacts-table.component.scss']
 })
 export class ContactsTableComponent implements OnInit, OnDestroy {
 
-  constructor(private contactService: ContactsService, private route: ActivatedRoute) {
+  constructor(private contactService: ContactsService, private route: ActivatedRoute, private router: Router) {
   }
 
   public dataSource: any;
@@ -54,6 +54,14 @@ export class ContactsTableComponent implements OnInit, OnDestroy {
    */
   onPageChange(pageEvent: PageEvent) {
     this.contactService.fetchContacts(pageEvent.pageSize, pageEvent.pageIndex);
+    // set query params
+    this.router.navigate(
+      [],
+      {
+        relativeTo: this.route,
+        queryParams: {pageIndex: pageEvent.pageIndex, pageSize: pageEvent.pageSize},
+        queryParamsHandling: 'merge'
+      });
   }
 
   ngOnDestroy(): void {
